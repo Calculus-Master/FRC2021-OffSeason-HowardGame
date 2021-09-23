@@ -10,7 +10,7 @@
       "request": "launch",
       "mainClass": "frc.robot.Sim",
       "env": {
-        "DYLD_LIBRARY_PATH": "build/tmp/jniExtractDir",
+        "DYLD_LIBRARY_PATH": "/build/tmp/jniExtractDir",
         "Path": "${env:Path};${workspaceFolder}\\build\\tmp/jniExtractDir"
       }
     },
