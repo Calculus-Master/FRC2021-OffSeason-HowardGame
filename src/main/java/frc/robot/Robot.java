@@ -32,15 +32,15 @@ public class Robot extends TimedRobot
 
         this.armToggleButton = new JoystickButton(this.joystick, PS4Constants.SQUARE.getValue()); //1
 
-        this.elevatorLowerLevelButton = new JoystickButton(this.joystick, PS4Constants.CROSS.getValue());
-        this.elevatorMiddleLevelButton = new JoystickButton(this.joystick, PS4Constants.CIRCLE.getValue());
-        this.elevatorUpperLevelButton = new JoystickButton(this.joystick, PS4Constants.TRIANGLE.getValue());
+        this.elevatorLowerLevelButton = new JoystickButton(this.joystick, PS4Constants.CROSS.getValue()); //2
+        this.elevatorMiddleLevelButton = new JoystickButton(this.joystick, PS4Constants.CIRCLE.getValue()); //3
+        this.elevatorUpperLevelButton = new JoystickButton(this.joystick, PS4Constants.TRIANGLE.getValue()); //4
 
         this.armToggleButton.whenReleased(this.armSubsystem::toggleArms, this.armSubsystem);
 
-        this.elevatorLowerLevelButton.whenReleased(() -> this.elevatorSubsystem.setLevel(ElevatorLevel.LOWER));
-        this.elevatorMiddleLevelButton.whenReleased(() -> this.elevatorSubsystem.setLevel(ElevatorLevel.MIDDLE));
-        this.elevatorUpperLevelButton.whenReleased(() -> this.elevatorSubsystem.setLevel(ElevatorLevel.UPPER));
+        this.elevatorLowerLevelButton.whenReleased(() -> this.elevatorSubsystem.setLevel(ElevatorLevel.LOWER), this.elevatorSubsystem);
+        this.elevatorMiddleLevelButton.whenReleased(() -> this.elevatorSubsystem.setLevel(ElevatorLevel.MIDDLE), this.elevatorSubsystem);
+        this.elevatorUpperLevelButton.whenReleased(() -> this.elevatorSubsystem.setLevel(ElevatorLevel.UPPER), this.elevatorSubsystem);
     }
 
     @Override
