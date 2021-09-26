@@ -6,15 +6,20 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.subsystems.armsubsystem.ArmSubsystem;
 import frc.robot.utils.PS4Constants;
 
 public class Robot extends TimedRobot
 {
     public static final int ELEVATOR_ID = 1;
 
+    private ArmSubsystem armSubsystem;
+
     private WPI_TalonSRX elevator;
 
     private Joystick joystick;
+
+    private JoystickButton armToggleButton;
 
     private JoystickButton elevatorBottomLevelButton;
     private JoystickButton elevatorMidLevelButton;
@@ -24,7 +29,12 @@ public class Robot extends TimedRobot
     public void robotInit()
     {
         this.elevator = new WPI_TalonSRX(ELEVATOR_ID);
+
+        this.armSubsystem = new ArmSubsystem().initialize();
+
         this.joystick = new Joystick(0);
+
+        this.armToggleButton = new JoystickButton(this.joystick, PS4Constants.SQUARE.getValue()); //1
 
         this.elevatorBottomLevelButton = new JoystickButton(this.joystick, PS4Constants.CROSS.getValue());
         this.elevatorMidLevelButton = new JoystickButton(this.joystick, PS4Constants.CIRCLE.getValue());
@@ -33,6 +43,8 @@ public class Robot extends TimedRobot
         this.elevatorBottomLevelButton
                 .whenPressed(() -> this.elevator.set(ControlMode.PercentOutput, 0.5))
                 .whenReleased(() -> this.elevator.set(0.0));
+
+        this.armToggleButton.whenReleased(this.armSubsystem::toggleArms, this.armSubsystem);
     }
 
     @Override
