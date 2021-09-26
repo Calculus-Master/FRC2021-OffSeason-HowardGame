@@ -13,7 +13,7 @@ public class ElevatorSubsystem extends SubsystemBase
     public ElevatorSubsystem initialize()
     {
         this.elevator = new WPI_TalonSRX(1);
-        this.elevator.config_kP(0, 5);
+        this.elevator.config_kP(0, 5/1023D);
 
         this.level = ElevatorLevel.LOWER;
 
