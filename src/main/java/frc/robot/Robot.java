@@ -48,6 +48,9 @@ public class Robot extends TimedRobot
     {
         // always run the CommandScheduler during periodic
         CommandScheduler.getInstance().run();
+
+        //Update SmartDashboard
+        this.elevatorSubsystem.updateDashboard();
     }
 
     @Override
